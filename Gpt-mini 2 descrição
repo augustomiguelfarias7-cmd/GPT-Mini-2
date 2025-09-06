@@ -1,0 +1,70 @@
+GPT-Mini 2 – Modelo de Linguagem Multilingue e Multimodal
+
+O GPT-Mini 2 é um modelo de linguagem de código aberto desenvolvido para entendimento, raciocínio e geração de texto em múltiplas línguas, além de suportar funcionalidades multimodais como geração de imagens e transcrição de áudio. Este projeto combina aprendizado de linguagem natural, multimodalidade e código aberto para permitir que qualquer pessoa explore, modifique e execute o modelo.
+
+Funcionalidades principais
+
+Multilingue: Treinado com datasets da Wikipédia e OSCAR em diversas línguas (Português, Inglês, Francês, Espanhol, Alemão, Italiano, Russo, Chinês, Japonês e Coreano). Também inclui dados de QA em português e código Python.
+
+Raciocínio: Capaz de raciocinar sobre os prompts recebidos, respondendo a perguntas e realizando inferências simples, usando o “pensapreendidos” do modelo, que multiplicam suas capacidades de análise.
+
+Multimodalidade:
+
+Geração de imagens: Integrado com DALL·E PyTorch para criar imagens a partir de prompts de texto.
+
+Processamento de imagens: Usa CLIP para compreender e gerar embeddings de imagens.
+
+Transcrição de áudio: Utiliza Whisper para transformar áudio em texto, permitindo comandos de voz ou análise de áudio.
+
+
+Código aberto: Todo o código do modelo, servidor Flask que roda a API e exemplos de cliente estão disponíveis. Isso permite que qualquer pessoa execute o GPT-Mini 2 localmente ou adapte para projetos próprios.
+
+
+Estrutura do projeto
+
+1. Modelo GPT-Mini 2: Arquivo train_gpt_mini_2_multilingual_final.py que contém:
+
+Tokenizer simples multilingue
+
+Transformer customizado com múltiplas camadas
+
+Funções multimodais (imagem, áudio)
+
+Treinamento com datasets multilíngues
+
+
+
+2. Servidor Flask: Disponibiliza o modelo via API REST (/chat-gpt-mini-2) para receber prompts, gerar respostas e imagens.
+
+
+3. Cliente de teste: Scripts de exemplo em Python para enviar prompts à API e receber respostas e imagens codificadas em Base64.
+
+
+
+Como usar
+
+1. Clone o repositório.
+
+
+2. Instale as dependências: pip install -r requirements.txt (incluindo torch, transformers, datasets, Pillow, open_clip, whisper, dalle_pytorch, flask).
+
+
+3. Treine ou carregue o modelo pré-treinado.
+
+
+4. Execute o servidor Flask:
+
+python server_flask_gpt_mini_2.py
+
+
+5. Use o cliente de teste para enviar prompts e receber respostas:
+
+import requests
+response = requests.post("http://localhost:8000/chat-gpt-mini-2", json={"prompt":"Olá!"})
+print(response.json())
+
+
+
+Licença
+
+Este projeto é 100% open-source. Sinta-se livre para explorar, modificar e integrar o GPT-Mini 2 em seus próprios projetos.# GPT-Mini-2
