@@ -1,0 +1,34 @@
+import requests
+import json
+from PIL import Image
+from io import BytesIO
+import base64
+
+# URL da API
+API_URL = "http://localhost:8000/chat-gpt-mini-2"
+
+# Prompt de teste
+prompt = "Um robô futurista lutando contra dragões em uma cidade cyberpunk."
+
+# Monta o JSON de requisição
+data = {"prompt": prompt, "generate_image": True}
+
+# Faz a requisição POST
+response = requests.post(API_URL, json=data)
+
+if response.status_code == 200:
+    result = response.json()
+    
+    # Texto gerado pelo GPT-Mini 2
+    texto = result.get("response", "")
+    print("GPT-Mini 2 respondeu:", texto)
+    
+    # Imagem gerada pelo DALL·E
+    img_base64 = result.get("image", None)
+    if img_base64:
+        img_bytes = base64.b64decode(img_base64)
+        image = Image.open(BytesIO(img_bytes))
+        image.show()  # Abre a imagem no visualizador padrão
+        image.save("imagem_gerada.png")  # Salva a imagem localmente
+else:
+    print("Erro na API:", response.status_code, response.text)
